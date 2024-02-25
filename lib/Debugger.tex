@@ -1,0 +1,81 @@
+% Uncomment only one of the commented snippets below
+% ------------------------------------------------------
+\begin{comment}
+    % DEBUGGER: Grids to control margins and layout
+    \usepackage[grid,
+        gridcolor=red!20,
+        subgridcolor=green!20,
+        gridunit=in]{eso-pic}
+    \usepackage{comment}
+\end{comment}
+% ------------------------------------------------------
+\begin{comment}
+    % DEBUGGER: Color margins only
+    % Limitation: Margins OR Body OR ROWS, not more than one
+    \backgroundsetup{
+        scale=1,
+        angle=0,
+        opacity=1,
+        color=red!20,
+        contents={
+            \begin{tikzpicture}[remember picture,overlay]
+                \fill (current page.north west) rectangle ([xshift=0.75in,yshift=-0.75in]current page.south west);
+                \fill (current page.north east) rectangle ([xshift=-0.75in,yshift=-0.75in]current page.south east);
+                \fill (current page.north west) rectangle ([yshift=-1in]current page.north east);
+                \fill (current page.south west) rectangle ([yshift=1in]current page.south east);
+            \end{tikzpicture}
+        }
+    }
+\end{comment}
+% ------------------------------------------------------
+\begin{comment}
+    % DEBUGGER: Color body except margins
+    % Limitation: Margins OR Body OR ROWS, not more than one
+    \backgroundsetup{
+        scale=1,
+        angle=0,
+        opacity=1,
+        color=red!20,
+        contents={
+            \begin{tikzpicture}[remember picture,overlay]
+                \fill [red!20] ([shift={(0.75in,1in)}]current page.south west)
+                rectangle ([shift={(-0.75in,-1in)}]current page.north east);
+            \end{tikzpicture}
+        }
+    }
+\end{comment}
+%
+% ------------------------------------------------------
+% Row 1
+\begin{comment}
+    % DEBUGGER: Color rows. Use case: IEEE template. LEFT ROW
+    % Limitation: Margins OR Body OR ROWS, not more than one
+    \backgroundsetup{
+        scale=1,
+        angle=0,
+        opacity=1,
+        color=red!20,
+        contents={
+            \begin{tikzpicture}[remember picture,overlay]
+                \fill [red!20] ([shift={(0.75in,1in)}]current page.south west) rectangle ([shift={(-0.09in,-1in)}]current page.north);
+            \end{tikzpicture}
+        }
+    }
+\end{comment}
+% Row 2
+\begin{comment}
+    % DEBUGGER: Color rows. Use case: IEEE template. RIGHT ROW
+    % Limitation: Margins OR Body OR ROWS, not more than one
+    \backgroundsetup{
+        scale=1,
+        angle=0,
+        opacity=1,
+        color=green!20,
+        contents={
+            \begin{tikzpicture}[remember picture,overlay]
+                \fill [red!20] ([shift={(-0.75in,1in)}]current page.south east) rectangle ([shift={(0.09in,-1in)}]current page.north);
+            \end{tikzpicture}
+        }
+    }
+\end{comment}
+% ------------------------------------------------------

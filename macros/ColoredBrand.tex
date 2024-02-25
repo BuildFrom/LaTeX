@@ -1,0 +1,20 @@
+\definecolor{myColor}{RGB}{64, 0, 0}
+
+\pgfkeys{
+    /coloredbrand/.is family, /coloredbrand,
+    default/.style = {
+        text size = \Large,
+        text style = \bfseries,
+        text color = myColor,
+    },
+    text size/.store in = \txtsize,
+    text style/.store in = \txtstyle,
+    text color/.store in = \txtcolor,
+}
+
+\newcommand{\coloredbrand}[2][]{
+    \pgfkeys{/coloredbrand, default, #1}
+    {\txtsize\txtstyle\textcolor{\txtcolor}{#2}}
+}
+
+% \coloredbrand{Name}

@@ -1,0 +1,54 @@
+\begin{figure}
+    \begin{adjustbox}{width=\linewidth}
+        \begin{sequencediagram}
+            \tikzstyle{inststyle}+=[bottom color=yellow]
+            \tikzstyle{every node}+=[node distance=0.75cm and 0.75cm]
+
+            \newthread{U}{:User}
+            \newinst[0.75]{S}{:Sensor}
+            \newinst[0.75]{T}{:Twilio}
+            \newinst[0.75]{D}{:Database}
+
+            \begin{sdblock}[green!20]{Device}{}
+                \begin{call}{U}{Create Device}{S}
+                {{\parbox{2cm}{\centering Ack Device Creation}}}
+                    \begin{call}{S}
+                    {Store Device Data}{D}{Ack Device Creation}
+                    \end{call}
+                \end{call}
+            \end{sdblock}
+
+            \begin{sdblock}[green!20]{Connect Client}{}
+                \begin{call}{U}
+                {{\parbox{2cm}{\centering Connect to Phone}}}{S}
+                {{\parbox{2cm}{\centering Ack Connection Update}}}
+                    \begin{call}{S}{Update Connection Status}{D}{Ack Connection Update}
+                    \end{call}
+                \end{call}
+            \end{sdblock}
+
+            \begin{sdblock}[green!20]{Subscribe to Alert}{}
+                \begin{call}{U}
+                {{\parbox{2cm}{\centering Subscribe to Alerts}}}{T}
+                {{\parbox{2cm}{\centering Provide User's Alert Preferences}}}
+                    \begin{call}{T}
+                    {{\parbox{2cm}{\centering Retrieve User's Alert Preferences}}}{D}
+                    {{\parbox{3cm}{\centering Ack Subs}}}
+                    \end{call}
+                \end{call}
+            \end{sdblock}
+
+            \begin{sdblock}[green!20]{Receive Alert}{}
+                \begin{call}{U}{Request Alert}{S}{Notify User}
+                    \begin{call}{S}{Retrieve Alert Data}{D}{Provide Alert Data}
+                    \end{call}
+                    \begin{call}{S}{Send Alert}{T}{}
+                    \end{call}
+                \end{call}
+            \end{sdblock}
+
+        \end{sequencediagram}
+    \end{adjustbox}
+    \caption{Software Sequence Diagram}
+    \label{fig:softwareSeqDiagramUpdated}
+\end{figure}

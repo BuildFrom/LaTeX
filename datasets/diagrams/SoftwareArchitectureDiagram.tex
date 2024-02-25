@@ -1,0 +1,22 @@
+\begin{figure}
+    \centering
+    \begin{adjustbox}{width=\linewidth}
+        \begin{tikzpicture}
+            \begin{umlcomponent}[x=4,y=0]{Cloud Workspace}
+                \umlbasiccomponent[x=1,y=-2]{User Management Service - UI}
+                \umlbasiccomponent[x=1,y=-4.5]{Reporting/Analytics Service}
+                \umlbasiccomponent[x=1,y=-6.8]{Database}
+                \begin{umlcomponent}[x=5.5,y=-3]{Notification Service}
+                    \umlbasiccomponent[x=1, y=-2]{Twilio API}
+                \end{umlcomponent}
+            \end{umlcomponent}
+            \umlbasiccomponent[x=4.5,y=-10.6]{Sensor Management Software}
+            \umlbasiccomponent[x=11,y=-10.6]{Client Device}
+
+            \draw[-latex, line width=1.5pt, dashed] (Sensor Management Software.north) -- (Notification Service.west);
+            \draw[-latex, line width=1.5pt, dashed] (Twilio API.south) -- (Client Device.north);
+        \end{tikzpicture}
+    \end{adjustbox}
+    \caption{Software Architecture}
+    \label{fig:softwareArchitecture}
+\end{figure}

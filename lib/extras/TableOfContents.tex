@@ -1,0 +1,10 @@
+\makeatletter
+\renewcommand\tableofcontents{%
+    \section*{\contentsname
+    \@mkboth{
+        \MakeUppercase\contentsname}{}}
+    \@starttoc{toc}
+}
+\makeatother
+\tableofcontents
+\cleardoublepage

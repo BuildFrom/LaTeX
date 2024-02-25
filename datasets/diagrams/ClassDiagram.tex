@@ -1,0 +1,70 @@
+\begin{figure}
+    \begin{adjustbox}{width=\linewidth}
+        \begin{tikzpicture}
+
+            \pgfdeclarelayer{background}
+            \pgfdeclarelayer{foreground}
+            \pgfdeclarelayer{connectionlayers}
+            \pgfsetlayers{background,connectionlayers,main,foreground}
+
+            \begin{class}[text width=4cm]{User}{4.5,0}
+                \operation{startSecurity() : boolean}
+            \end{class}
+
+            \begin{class}[text width=3cm]{MicrowaveSensor}{0 , -2.5}
+                \inherit{User}
+                \attribute{sensorId : int}
+                \attribute{sensorName : string}
+                \attribute{status : boolean}
+                \attribute{threshold : int}
+                \operation{isActive() : void}
+                \operation{detectMotion() : void}
+            \end{class}
+
+            \begin{class}[text width=3cm]{Notifications}{4.5 , -2.5}
+                \inherit{MicrowaveSensor}
+                \attribute{notificationId : int}
+                \attribute{message : string}
+                \attribute{status : boolean}
+            \end{class}
+
+            \begin{class}[text width=3cm]{SMSService}{9, -2.5}
+                \inherit{Notifications}
+                \attribute{smsServiceId : int}
+                \attribute{phoneNumber : int}
+                \operation{sendSMS() : void}
+                \operation{setStatus() : void}
+                \operation{create() : void}
+            \end{class}
+            \begin{class}[text width=3.5cm]{MicrowaveSensorLog}{0 , -7}
+                \inherit{MicrowaveSensor}
+                \attribute{logId : int}
+                \attribute{sensorId : int}
+                \attribute{timestamp : int}
+            \end{class}
+
+            \begin{class}[text width=3cm]{NotificationsLog}{4.5 , -6.5}
+                \inherit{Notifications}
+                \attribute{logId : int}
+                \attribute{notificationId : int}
+                \attribute{timestamp : int}
+            \end{class}
+
+            \begin{class}[text width=3cm]{SMSServiceLog}{9, -6.5}
+                \inherit{SMSService}
+                \attribute{logId : int}
+                \attribute{smsServiceId : int}
+                \attribute{timestamp : int}
+            \end{class}
+
+            \begin{class}[text width=3cm]{Database}{4.5 , -10}
+                \inherit{MicrowaveSensorLog}
+                \inherit{NotificationsLog}
+                \inherit{SMSServiceLog}
+                \operation{save() : void}
+            \end{class}
+
+        \end{tikzpicture}
+    \end{adjustbox}
+    \caption{Software Class Diagram}\label{fig:software-class-diagram}
+\end{figure}

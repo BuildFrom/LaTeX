@@ -1,0 +1,15 @@
+\newcommand{\img}[3][]{%
+    \begin{figure}[h!]
+        \centering
+        \if\relax\detokenize{#1}\relax
+        \includegraphics[width=\linewidth]{datasets/images/#2}
+        \else
+        \includegraphics[height=\linewidth, angle=#1]{datasets/images/#2}
+        \fi
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
+}
+
+% Usage: \img{IMGname}{caption}
+% Usage: \img[+/-360]{IMGname}{caption}
